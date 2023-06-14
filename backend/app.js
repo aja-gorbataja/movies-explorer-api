@@ -3,7 +3,7 @@ const express = require('express');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const router = require('./routes/routes');
+const router = require('./routes');
 
 const { MONGO_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb', PORT = 3000 } = process.env;
 const app = express();

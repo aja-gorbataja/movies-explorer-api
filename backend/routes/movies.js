@@ -1,31 +1,13 @@
 const movieRouter = require('express').Router();
-const { celebrate, Joi } = require('celebrate');
 const {
   getMovies, createMovie, deleteMovie,
 } = require('../controllers/movies');
-const regexUrl = require('../utils/constants');
+const { createMovieValidation, deleteValidation } = require('../utils/celebrateValidation');
 
 movieRouter.get('/', getMovies);
 
-movieRouter.post('/', celebrate({
-  body: Joi.object().keys({
-    country: Joi.string().required(),
-    director: Joi.string().required(),
-    duration: Joi.number().required(),
-    year: Joi.string().required(),
-    description: Joi.string().required(),
-    image: Joi.string().required().pattern(regexUrl),
-    trailerLink: Joi.string().required().pattern(regexUrl),
-    thumbnail: Joi.string().required().pattern(regexUrl),
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
-  }),
-}), createMovie);
+movieRouter.post('/', createMovieValidation, createMovie);
 
-movieRouter.delete('/:movieId', celebrate({
-  params: Joi.object().keys({
-    movieId: Joi.number().required(),
-  }),
-}), deleteMovie);
+movieRouter.delete('/:_id', deleteValidation, deleteMovie);
 
 module.exports = movieRouter;
