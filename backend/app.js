@@ -2,11 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-<<<<<<< HEAD
 const cors = require('cors');
-=======
-const { cors } = require('cors');
->>>>>>> fe2bad05f3dcb37c9e385a12fb1bbcf81ef589fa
 const mongoose = require('mongoose');
 const router = require('./routes');
 
